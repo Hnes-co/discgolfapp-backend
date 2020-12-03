@@ -36,13 +36,13 @@ app.get('/api/results/:id', (req, res, next) => {
 })
 
 app.get('/courses', (req, res) => {
-    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+    res.sendFile(path.join(__dirname, './build/index.html'))
 })
 app.get('/scores', (req, res) => {
-    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+    res.sendFile(path.join(__dirname, './build/index.html'))
 })
 app.get('/links', (req, res) => {
-    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+    res.sendFile(path.join(__dirname, './build/index.html'))
 })
 
   

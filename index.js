@@ -35,6 +35,16 @@ app.get('/api/results/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
+app.get('/courses', (req, res) => {
+    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+})
+app.get('/scores', (req, res) => {
+    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+})
+app.get('/links', (req, res) => {
+    window.location.replace('https://agile-headland-07227.herokuapp.com/')
+})
+
   
 app.post('/api/results', (request, response) => {
     const body = request.body
@@ -58,7 +68,7 @@ app.post('/api/results', (request, response) => {
 
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 
-        'unknown endpoint. Trying to route directly to a "subpage" of the page does not work. This is because they dont actually exist, since the page is a single page application. Remove the content after the "/" (example .com/courses) from the address bar to return to the page.' 
+        'unknown endpoint. you tried to reach a page that does not exist.'
     })
 }
 

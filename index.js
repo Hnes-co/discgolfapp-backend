@@ -79,7 +79,8 @@ app.post('/api/results', (request, response) => {
     const result = new Result ({
         name: body.name,
         course: body.course,
-        score: body.score
+        score: body.score,
+        toPar: body.toPar
     })
   
     result.save().then(savedResult => {

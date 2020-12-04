@@ -36,13 +36,13 @@ app.get('/api/results/:id', (req, res, next) => {
 })
 
 app.get('/courses', (req, res) => {
-    res.sendFile(path.join(__dirname, './build/index.html'))
+    res.sendFile('index.html')
 })
 app.get('/scores', (req, res) => {
-    res.sendFile(path.join(__dirname, './build/index.html'))
+    res.sendFile('index.html')
 })
 app.get('/links', (req, res) => {
-    res.sendFile(path.join(__dirname, './build/index.html'))
+    res.sendFile('index.html')
 })
 
   

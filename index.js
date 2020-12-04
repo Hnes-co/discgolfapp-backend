@@ -36,13 +36,25 @@ app.get('/api/results/:id', (req, res, next) => {
 })
 
 app.get('/courses', (req, res) => {
-    res.sendFile('index.html')
+    res.sendFile('index.html', (err) => {
+        if(err){
+            res.status(500).send(err)
+        }
+    })
 })
 app.get('/scores', (req, res) => {
-    res.sendFile('index.html')
+    res.sendFile('index.html', (err) => {
+        if(err){
+            res.status(500).send(err)
+        }
+    })
 })
 app.get('/links', (req, res) => {
-    res.sendFile('index.html')
+    res.sendFile('index.html', (err) => {
+        if(err){
+            res.status(500).send(err)
+        }
+    })
 })
 
   

@@ -16,6 +16,8 @@ const resultSchema = new mongoose.Schema({
   course: String,
   score: Number,
   toPar: Number,
+  results: Array,
+  time: String,
 })
 
 resultSchema.set('toJSON', {

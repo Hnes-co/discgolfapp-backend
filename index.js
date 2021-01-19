@@ -80,7 +80,9 @@ app.post('/api/results', (request, response) => {
         name: body.name,
         course: body.course,
         score: body.score,
-        toPar: body.toPar
+        toPar: body.toPar,
+        results: body.results,
+        time: body.time
     })
   
     result.save().then(savedResult => {

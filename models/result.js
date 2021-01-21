@@ -11,16 +11,14 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
         console.log('error connecting to MongoDB:', error.message)  
     })
 
-const resultSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
   name: String,
-  course: String,
-  score: Number,
-  toPar: Number,
+  parTotal: Number,
+  holes: Array,
   results: Array,
-  time: String,
 })
 
-resultSchema.set('toJSON', {
+courseSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -28,4 +26,4 @@ resultSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Result', resultSchema)
+module.exports = mongoose.model('Course', courseSchema)

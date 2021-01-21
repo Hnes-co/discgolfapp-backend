@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
-const Result = require('./models/result')
+const Course = require('./models/result')
 
 app.use(express.json()) 
 
@@ -17,16 +17,16 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
-app.get('/api/results', (req, res) => {
-    Result.find({}).then(results => {
-        res.json(results)
+app.get('/api/courses', (req, res) => {
+    Course.find({}).then(courses => {
+        res.json(courses)
     })
 })
 
-app.get('/api/results/:id', (req, res, next) => {
-    Result.findById(req.params.id).then(result => {
-        if(result) {
-            res.json(result)
+app.get('/api/courses/:id', (req, res, next) => {
+    Course.findById(req.params.id).then(course => {
+        if(course) {
+            res.json(course)
         }
         else {
             res.status(404).end()
@@ -67,7 +67,7 @@ app.get('/scores', (req, res) => {
 })
 
   
-app.post('/api/results', (request, response) => {
+app.post('/api/courses', (request, response) => {
     const body = request.body
   
     if (body.name === undefined) {
@@ -76,18 +76,33 @@ app.post('/api/results', (request, response) => {
         })
     }
   
-    const result = new Result ({
+    const course = new Course ({
         name: body.name,
-        course: body.course,
-        score: body.score,
-        toPar: body.toPar,
+        parTotal: body.parTotal,
+        holes: body.holes,
         results: body.results,
-        time: body.time
     })
   
-    result.save().then(savedResult => {
-        response.json(savedResult)
+    course.save().then(savedCourse => {
+        response.json(savedCourse)
     })
+})
+
+app.put('/api/courses/:id', (request, response, next) => {
+    const body = request.body
+
+    const course = {
+        name: body.name,
+        parTotal: body.parTotal,
+        holes: body.holes,
+        results: body.results,
+    }
+
+    Course.findByIdAndUpdate(request.params.id, course, {new: true})
+        .then(updatedCourse => {
+            response.json(updatedCourse)
+        })
+        .catch(error => next(error))
 })
 
 const unknownEndpoint = (request, response) => {

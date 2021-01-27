@@ -5,7 +5,7 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const Course = require('./models/result')
-
+const path = require('path');
 app.use(express.json()) 
 
 app.use(express.static('build'))
@@ -59,8 +59,8 @@ app.get('/scores', (req, res) => {
 
 
 app.get('/links', (req, res) => {   
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
-  })
+    res.sendFile(path.join(__dirname, '/build', 'index.html'))
+})
 
   
 app.post('/api/courses', (request, response) => {

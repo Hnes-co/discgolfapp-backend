@@ -45,16 +45,7 @@ app.get('/courses', (req, res) => {
         <p> Yes, this is a poor way of handling this error, and hopefully someday these requests will redirect back to the home page....</p>
     `)
 })
-app.get('/links', (req, res) => {
-    res.send(`
-        <h1>Oops!</h1>
-        <p> You tried to reach a page that doesn't exist. </p>
-        <p> Since this is a single page application, the "subpages" ( /course, /links, /scrores) do not actually exist.</p>
-        <p> To avoid this error, do not refresh the page while browsing the "subpages"</p>
-        <p> Remove the content after the "/" (example: www.samplepage.com/courses <-- ) from the address bar to return to the home page</p>
-        <p> Yes, this is a poor way of handling this error, and hopefully someday these requests will redirect back to the home page....</p>
-    `)
-})
+
 app.get('/scores', (req, res) => {
     res.send(`
         <h1>Oops!</h1>
@@ -65,6 +56,15 @@ app.get('/scores', (req, res) => {
         <p> Yes, this is a poor way of handling this error, and hopefully someday these requests will redirect back to the home page....</p>
     `)
 })
+
+
+app.get('/links', (req, res) => {   
+    res.sendFile(path.join(__dirname, '/build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 
   
 app.post('/api/courses', (request, response) => {
